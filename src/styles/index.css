@@ -1,0 +1,70 @@
+/* src/styles/index.css */
+@font-face {
+  font-family: 'SF Pro Display';
+  src: url('../fonts/SF-Pro-Display-Regular.otf') format('opentype'); /* Adjust path and format as needed */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display Bold';
+  src: url('../fonts/SF-Pro-Display-Bold.otf') format('opentype'); /* Adjust path and format as needed */
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'SF Pro Display Italic';
+  src: url('../fonts/SF-Pro-Display-RegularItalic.otf') format('opentype'); /* Adjust path and format as needed */
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Fallback for Helvetica Neue */
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: local('Helvetica Neue Regular');
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Helvetica Neue';
+  src: local('Helvetica Neue Bold');
+  font-weight: 700;
+  font-style: normal;
+}
+
+
+body, html, #root {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrolling if elements go off screen */
+  font-family: 'SF Pro Text', 'Helvetica Neue', sans-serif; /* Prioritize SF fonts, then Helvetica, then generic sans-serif */
+  color: #000000; /* Main text color */
+}
+
+body {
+  background-image: url('../../public/assets/desktop-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Align dock at bottom, desktop content at top */
+  align-items: flex-start;
+}
+
+/* Define CSS variables for your colors */
+:root {
+  --color-primary-text: #ffffff;
+  --color-accent-green: #729E53;
+  --color-accent-yellow: #FFD42A;
+  --color-dark-green: #008000;
+  --color-window-bg: rgba(255, 255, 255, 0.7); /* Slightly transparent white for windows */
+  --color-window-border: rgba(0, 0, 0, 0.1);
+  --color-window-titlebar-bg: rgba(230, 230, 230, 0.8);
+  --color-shadow: rgba(0, 0, 0, 0.3);
+}

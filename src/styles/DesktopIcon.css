@@ -1,0 +1,42 @@
+/* src/styles/DesktopIcon.css */
+.desktop-icon {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  cursor: pointer;
+  user-select: none; /* Prevent text selection */
+  transition: background-color 0.1s ease-in-out;
+  border-radius: 8px; /* Slightly rounded corners for hover */
+  width: 80px; /* Fixed width for consistent alignment */
+  text-align: center;
+}
+
+.desktop-icon:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Light hover effect */
+}
+
+.desktop-icon:active {
+  background-color: rgba(255, 255, 255, 0.3); /* Click active effect */
+}
+
+.icon-image {
+  width: 64px; /* Icon size */
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 5px;
+  filter: drop-shadow(0 2px 4px var(--color-shadow)); /* Subtle shadow for depth */
+}
+
+.icon-name {
+  color: var(--color-primary-text); /* White text */
+  font-family: 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+  text-shadow: 0 1px 2px var(--color-shadow); /* Text shadow for readability */
+  white-space: nowrap; /* Prevent name from wrapping */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add ellipsis if name is too long */
+  max-width: 100%; /* Ensure text doesn't overflow container */
+}

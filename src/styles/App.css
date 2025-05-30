@@ -1,0 +1,68 @@
+/* src/styles/App.css */
+.app-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Full viewport height */
+  width: 100vw; /* Full viewport width */
+  position: relative; /* For absolute positioning of desktop elements */
+  overflow: hidden; /* Prevent scrolling outside the app */
+}
+
+/* New Menu Bar Styles */
+.menu-bar {
+  position: fixed; /* Keep it at the top */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 24px; /* Standard macOS menu bar height */
+  background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent background */
+  backdrop-filter: blur(20px); /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(20px);
+  z-index: 300; /* Ensure it's above everything */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+  color: var(--color-primary-text); /* White text */
+  font-family: 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  font-size: 13px;
+}
+
+.menu-bar-left, .menu-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 15px; /* Spacing between items */
+}
+
+.menu-bar-finder-icon {
+  height: 16px; /* Size for the Finder icon */
+  /* filter: brightness(0) invert(1); Make it white */
+  margin-right: 5px;
+}
+
+.menu-bar-app-name {
+  font-weight: bold; /* Like in macOS */
+}
+
+.menu-bar-time {
+  /* No special styles needed here, inherits from menu-bar */
+}
+
+
+.desktop {
+  flex-grow: 1; /* Occupy all available space above the dock */
+  position: relative; /* For positioning desktop icons */
+  width: 100%;
+  /* Adjust top padding to account for the menu bar */
+  padding-top: 24px; /* Height of menu bar */
+  box-sizing: border-box; /* Include padding in height */
+  height: calc(100% - 24px); /* Full height minus menu bar */
+}
+
+/* Ensure the window can be styled based on its props in App.js */
+.window {
+  /* These styles are applied directly in Window.jsx,
+     but ensure no conflicting styles here.
+     The style prop will override. */
+}

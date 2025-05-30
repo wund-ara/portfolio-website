@@ -1,0 +1,160 @@
+/* src/styles/Window.css */
+.window {
+  position: absolute;
+  background-color: var(--color-window-bg);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px var(--color-shadow);
+  width: 600px; /* Default window width */
+  min-height: 300px; /* Default window height */
+  max-height: calc(100vh - 150px); /* Limit max height to viewport - menu bar - dock - some margin */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  border: 1px solid var(--color-window-border);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  resize: both; /* Allow resizing horizontally and vertically */
+  overflow: auto; /* For the main window element itself */
+}
+
+.title-bar {
+  display: flex;
+  align-items: center;
+  padding: 8px 10px;
+  background-color: var(--color-window-titlebar-bg);
+  border-bottom: 1px solid var(--color-window-border);
+  user-select: none;
+  cursor: grab;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
+  flex-shrink: 0; /* Prevent title bar from shrinking */
+}
+
+/* ... rest of the original Window.css code ... */
+
+.title-bar:active {
+  cursor: grabbing;
+}
+
+.traffic-lights {
+  display: flex;
+  gap: 7px;
+  margin-right: 10px;
+}
+
+.traffic-lights button {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  opacity: 0.9;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.traffic-lights button:hover {
+  opacity: 1;
+}
+
+.close-btn {
+  background-color: #ff5f56; /* Red */
+}
+
+.minimize-btn {
+  background-color: #ffbd2e; /* Yellow */
+}
+
+.maximize-btn {
+  background-color: #27c93f; /* Green */
+}
+
+.window-title {
+  font-family: 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  color: #333; /* Darker text for readability on light title bar */
+  flex-grow: 1; /* Center the title */
+  text-align: center;
+  font-weight: bold;
+}
+
+.window-content {
+  padding: 15px;
+  flex-grow: 1; /* Allow content to take up remaining space */
+  overflow-y: auto; /* Scroll if content exceeds window height */
+  color: #333; /* Default text color for content */
+  line-height: 1.6;
+}
+
+/* Specific content styling */
+.window-content h3 {
+  font-family: 'SF Pro Display', 'Helvetica Neue', sans-serif;
+  color: var(--color-dark-green);
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.window-content p {
+  font-family: 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  margin-bottom: 15px;
+}
+
+.window-content ul {
+  font-family: 'SF Pro Text', 'Helvetica Neue', sans-serif;
+  list-style: disc;
+  margin-left: 20px;
+  margin-bottom: 15px;
+}
+
+.window-content .project-item,
+.window-content .work-example-item {
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid var(--color-window-border);
+}
+
+.window-content .project-item img,
+.window-content .work-example-item img,
+.window-content .moodboard-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.window-content .project-item a {
+  color: var(--color-dark-green);
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.window-content .project-item a:hover {
+  text-decoration: underline;
+}
+
+.window-content .moodboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 10px;
+}
+
+.window-content {
+  padding: 15px;
+  flex-grow: 1; /* Allows content to take up remaining space */
+  overflow-y: auto; /* THIS IS KEY FOR SCROLLING CONTENT */
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Ensure images within content don't break layout */
+.window-content img {
+  max-width: 100%;
+  height: auto;
+  display: block; /* Prevents extra space below images */
+  margin: 10px auto; /* Centers images within content */
+}

@@ -1,0 +1,178 @@
+{
+  "desktopIcons": [
+    {
+      "id": "projects",
+      "name": "Projects",
+      "icon": "/assets/project-folder-icon.png",
+      "type": "folder",
+      "position": { "x": 50, "y": 50 },
+      "windowContent": {
+        "title": "Projects",
+        "type": "projectList",
+        "items": [
+          {
+            "id": "project1",
+            "title": "Holiday Club: Many Tabs",
+            "description": "Providing assistance and creative direction for the creation of Issue 3 of the brands annual magazine. Key technologies/tools: Adobe Creative Suite, Figma, Blender.",
+            "deliverables": [
+              "Article Layouts",
+              "Magazine Cover Design",
+              "Social Media Assets",
+              "3D Asset Renders"
+            ],
+            "images": [
+              "/assets/work-examples/project1-img1.png",
+              "/assets/work-examples/project1-img2.png"
+            ],
+            "link": "https://www.holidayclub.space"
+          },
+          {
+            "id": "project2",
+            "title": "The Gaff: Client Rebrand",
+            "description": "Revitalized brand identity for The Gaff Collective, focusing on modern aesthetics and more engaging visuals. Included logo redesign, typography system, and collateral.",
+            "deliverables": [
+              "New Logo & Brand Mark",
+              "Typography & Color Palette",
+              "YouTube Banner Design"
+            ],
+            "images": [
+              "/assets/work-examples/project2-img1.png",
+              "/assets/work-examples/project2-img2.png"
+            ],
+            "link": ""
+          }
+        ]
+      }
+    },
+    {
+      "id": "work-examples",
+      "name": "Passion Projects",
+      "icon": "/assets/work-examples-folder-icon.png",
+      "type": "folder",
+      "position": { "x": 50, "y": 150 },
+      "windowContent": {
+        "title": "Additional Work Examples",
+        "type": "workList",
+        "items": [
+          {
+            "id": "example1",
+            "title": "Music artist visual identity",
+            "description": "An exploration into the underlying musical themes of an artist and using these themes to form a visual identity.",
+            "image": [ 
+                "/assets/work-examples/example1-music.png",
+                "/assets/work-examples/example2-music.png"
+            ]
+          },
+          {
+            "id": "example2",
+            "title": "Digital Magazine Series",
+            "description": "A series of digital magazine exploring a range of themes and techniques to demonstrate and explore my learnings, created using Affinity and GIMP.",
+            "image": [
+                "/assets/work-examples/example1-mag.png",
+                "/assets/work-examples/example2-mag.png"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "moodboard",
+      "name": "Moodboard",
+      "icon": "/assets/moodboard-folder-icon.png",
+      "type": "folder",
+      "position": { "x": 50, "y": 250 },
+      "windowContent": {
+        "title": "Inspiration & References",
+        "type": "moodboard",
+        "images": [
+          "/assets/work-examples/moodboard-img1.png",
+          "/assets/work-examples/moodboard-img2.jpeg"
+        ]
+      }
+    },
+    {
+      "id": "about-me",
+      "name": "About Me",
+      "icon": "/assets/about-me-icon.png",
+      "type": "file",
+      "position": { "x": 50, "y": 350 },
+      "windowContent": {
+        "title": "About Me.txt",
+        "type": "text",
+        "content": "Hello! I'm Ara, a graphic designer with a passion for creating engaging and impactful visual experiences. My work spans branding, UI/UX, digital illustration, and 3D rendering. I love blending different media to bring unique visions to life. When I'm not designing, you can find me exploring new art forms, listening to music, or diving into a good book. I'm always eager to collaborate on exciting projects!"
+      }
+    }
+  ],
+  "dockItems": [
+    {
+      "id": "finder",
+      "name": "Finder",
+      "icon": "/assets/finder-icon.png",
+      "type": "app",
+      "action": "openFinder"
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "icon": "/assets/instagram-icon.png",
+      "type": "link",
+      "url": "https://instagram.com/wund.ara",
+      "external": true
+    },
+    {
+      "id": "email",
+      "name": "Email",
+      "icon": "/assets/email-icon.png",
+      "type": "link",
+      "url": "mailto:wundara21@gmail.com",
+      "external": true
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "icon": "/assets/youtube-icon.png",
+      "type": "link",
+      "url": "https://youtube.com/@wundara",
+      "external": true
+    },
+    {
+      "id": "spotify",
+      "name": "Spotify",
+      "icon": "/assets/music-icon.png",
+      "type": "link",
+      "url": "https://open.spotify.com/playlist/235OvI88kWNp6EFfeDfBHJ",
+      "external": true
+    }
+  ],
+  "autoOpenWidgets": [
+    {
+      "id": "video-preview",
+      "title": "Latest Video",
+      "type": "video",
+      "videoType": "online",
+      "videoPath": "assets/videos/local-vid.mp4",
+      "videoUrl": "https://www.youtube.com/embed/Pq10KCClZsc?si=_ChFK7xHeWOJN-qX",
+      "initialSize": { "width": 450, "height": 280 },
+      "initialPosition": { "x": 300, "y": 450 }
+    }
+  ],
+  "floatingGif": {
+    "id": "animated-logo",
+    "src": "/assets/blender-wund.gif",
+    "initialPosition": { "x": 1550, "y": 80 },
+    "initialSize": { "width": 250, "height": 250 },
+    "zIndex": 99
+  },
+  "floatingMusicPlayer": { 
+    "id": "background-music",
+    "title": "On Repeat 🔂",
+    "src": "/assets/nu-song.mp3",
+    "artworkSrc": "/assets/nu-artwork.png",
+    "initialPosition": { "x": 50, "y": 80 }, 
+    "initialSize": { "width": 375, "height": 435 },
+    "zIndex": 99,
+    "autoPlay": true,
+    "controls": true, 
+    "loop": true
+  }
+}

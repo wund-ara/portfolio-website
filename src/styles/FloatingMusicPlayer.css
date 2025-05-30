@@ -1,0 +1,80 @@
+/* src/styles/FloatingMusicPlayer.css */
+.floating-music-player {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent dark background */
+  backdrop-filter: blur(10px); /* Frosted glass effect */
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  overflow: hidden; /* Important for player controls */
+  cursor: grab;
+  color: white; /* Text color for title */
+  display: flex;
+  flex-direction: column; /* Stack title and audio player */
+  padding: 10px; /* Add some padding */
+  box-sizing: border-box; /* Include padding in width/height */
+  align-items: center;
+}
+
+.floating-music-player:active {
+  cursor: grabbing;
+  transform: scale(1.01);
+}
+
+/* .music-player-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+  user-select: none;
+} */
+
+.music-player-artwork {
+  width: 100%;  
+  border-radius: 4px; /* Slightly rounded corners for artwork */
+  margin-bottom: 0px; /* Space between artwork and controls */
+  object-fit: contain; /* Ensures image covers the area, cropping if necessary */
+  flex-grow: 1; /* Prevent artwork from shrinking */
+}
+
+.music-player-title {
+  font-size: 1.15em;
+  font-weight: bold;
+  margin-bottom: 0px;
+  text-align: center;
+  user-select: none; /* Prevent text selection */
+  color: var(--color-primary-text); /* Use the primary text color */
+  width: 100%; /* Ensure title takes full width */
+}
+
+.floating-music-player audio {
+  width: 100%;
+  height: auto; /* Take up remaining space */
+  min-height: 30px; /* Ensure controls are visible if controls=true */
+  background-color: transparent; /* Make audio player background transparent */
+  flex-shrink: 0;
+}
+
+/* Style for the default browser audio controls (can be tricky to customize heavily) */
+.floating-music-player audio::-webkit-media-controls-panel {
+  background-color: rgba(255, 255, 255, 0.2); /* Semi-transparent controls */
+  border-radius: 4px;
+}
+
+/* Resizer Handle (copy from FloatingGif.css) */
+/* .resizer-handle {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20px;
+  height: 20px;
+  cursor: se-resize;
+  background: transparent;
+  z-index: 1;
+  border-bottom: 2px solid transparent;
+  border-right: 2px solid transparent;
+  transition: border-color 0.2s ease-in-out;
+}
+
+.resizer-handle:hover {
+  border-color: rgba(255, 255, 255, 0.5);
+} */
