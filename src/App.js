@@ -3,7 +3,8 @@ import DesktopIcon from './components/DesktopIcon';
 import Window from './components/Window';
 import Dock from './components/Dock';
 import FloatingGif from './components/FloatingGif';
-import FloatingMusicPlayer from './components/FloatingMusicPlayer';
+// import FloatingMusicPlayer from './components/FloatingMusicPlayer';
+import MusicPlayerMenuItem from './components/MusicPlayerMenuItem';
 import portfolioData from './data/portfolio.json';
 import './styles/App.css';
 
@@ -240,6 +241,17 @@ function App() {
           <span className="menu-bar-app-name">Ara's MacBook</span>
         </div>
         <div className="menu-bar-right">
+          {/* Pass music player data directly, or define it in portfolio.json if it needs more structure */}
+          {/* For simplicity now, let's hardcode the music data for the component */}
+          <MusicPlayerMenuItem
+            musicData={{
+              src: "/assets/nu-song.mp3", // Make sure this path is correct
+              artworkSrc: "/assets/nu-artwork.jpg", // Make sure this path is correct
+              title: "On Repeat 🔂",
+              autoPlay: true, // Will autoplay muted
+              loop: true
+            }}
+          />
           <span className="menu-bar-time">{currentTime}</span>
         </div>
       </div>
@@ -288,7 +300,7 @@ function App() {
           />
         )}
         {/* NEW: Floating Music Player */}
-        {portfolioData.floatingMusicPlayer && (
+        {/*portfolioData.floatingMusicPlayer && (
           <FloatingMusicPlayer
             id={portfolioData.floatingMusicPlayer.id}
             title={portfolioData.floatingMusicPlayer.title}
@@ -302,6 +314,7 @@ function App() {
             loop={portfolioData.floatingMusicPlayer.loop}
           />
         )}
+        */}
       </div>
       <Dock items={portfolioData.dockItems} />
     </div>

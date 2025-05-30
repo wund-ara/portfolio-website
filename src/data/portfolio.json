@@ -162,17 +162,5 @@
     "initialPosition": { "x": 1550, "y": 80 },
     "initialSize": { "width": 250, "height": 250 },
     "zIndex": 99
-  },
-  "floatingMusicPlayer": { 
-    "id": "background-music",
-    "title": "On Repeat 🔂",
-    "src": "/assets/nu-song.mp3",
-    "artworkSrc": "/assets/nu-artwork.png",
-    "initialPosition": { "x": 50, "y": 80 }, 
-    "initialSize": { "width": 375, "height": 435 },
-    "zIndex": 99,
-    "autoPlay": true,
-    "controls": true, 
-    "loop": true
   }
 }

@@ -1,0 +1,200 @@
+/* src/styles/MusicPlayerMenuItem.css */
+
+.music-player-menu-item {
+  position: relative; /* For positioning the popup */
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 8px;
+  cursor: pointer;
+  -webkit-app-region: no-drag; /* Allow interaction on draggable menu bar */
+}
+
+.music-player-menu-item:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.menu-item-icon {
+  display: flex;
+  align-items: center;
+}
+
+.menu-item-icon img {
+  height: 14px; /* Size of the icon in the menu bar */
+  width: 14px;
+  margin-right: 5px;
+}
+
+.menu-item-text {
+  font-size: 13px; /* Match typical menu bar font size */
+  color: #fff;
+  user-select: none;
+}
+
+/* Music Controls Pop-up */
+.music-controls-popup {
+  position: absolute;
+  top: calc(100% + 5px); /* Position below the menu bar item, with a small gap */
+  right: 0; /* Align to the right of the menu item */
+  background-color: rgba(0, 0, 0, 0.7); /* Dark semi-transparent background */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+  width: 250px; /* Fixed width for the pop-up */
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  z-index: 1000; /* Ensure it's on top of everything */
+}
+
+/* .popup-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+} */
+
+.popup-artwork {
+  width: 100%;
+  height: 120px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.popup-title {
+  font-size: 1.1em;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.popup-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+
+.control-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border: none;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 0.9em;
+  transition: background-color 0.2s ease;
+}
+
+.control-button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9em;
+  max-width: 180px;
+  margin: 0 auto; /* Center the volume control */
+  width: 100%; /* Allow it to fill the width of the popup */
+}
+
+.volume-slider {
+  flex-grow: 1;
+  -webkit-appearance: none; /* Remove default styling */
+  appearance: none;
+  width: 100%;
+  height: 4px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+  border-radius: 2px;
+}
+
+.volume-slider:hover {
+  opacity: 1;
+}
+
+.volume-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #4CAF50; /* Green thumb */
+  cursor: pointer;
+}
+
+.volume-slider::-moz-range-thumb {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #4CAF50;
+  cursor: pointer;
+}
+.progress-bar-container {
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between time display and slider */
+  margin-top: 10px; /* Space above the progress bar */
+  margin-bottom: 15px; /* Space below the progress bar */
+  width: 100%;
+}
+
+.current-time,
+.duration {
+  font-size: 0.85em;
+  color: rgba(255, 255, 255, 0.8);
+  flex-shrink: 0; /* Prevent time text from shrinking */
+}
+
+.progress-slider {
+  flex-grow: 1; /* Allow slider to take up available space */
+  -webkit-appearance: none; /* Remove default browser styling */
+  appearance: none;
+  width: 100%; /* Fallback for older browsers */
+  height: 6px; /* Height of the slider track */
+  background: rgba(255, 255, 255, 0.3); /* Transparent track background */
+  outline: none;
+  border-radius: 3px; /* Rounded corners for the track */
+  cursor: pointer;
+  transition: opacity .2s;
+}
+
+.progress-slider:hover {
+  opacity: 0.9;
+}
+
+/* Style for the slider thumb (the draggable circle/handle) */
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px; /* Size of the thumb */
+  height: 16px;
+  border-radius: 50%; /* Make it round */
+  background: #007aff; /* Apple-like blue color */
+  cursor: grab; /* Indicates it's draggable */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.progress-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #007aff;
+  cursor: grab;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  transition: background-color 0.2s ease;
+}
+
+.progress-slider::-webkit-slider-thumb:active,
+.progress-slider::-moz-range-thumb:active {
+  cursor: grabbing;
+}
