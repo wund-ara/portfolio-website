@@ -4,7 +4,9 @@ import Window from './components/Window';
 import Dock from './components/Dock';
 import FloatingGif from './components/FloatingGif';
 // import FloatingMusicPlayer from './components/FloatingMusicPlayer';
+import ImageFileIcon from './components/ImageFileIcon';
 import MusicPlayerMenuItem from './components/MusicPlayerMenuItem';
+import PhotoGallery from './components/PhotoGallery';
 import portfolioData from './data/portfolio.json';
 import './styles/App.css';
 
@@ -14,12 +16,19 @@ function App() {
   const [draggingWindow, setDraggingWindow] = useState(null);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [currentTime, setCurrentTime] = useState('');
+  const [imageIconPositions, setImageIconPositions] = useState({});
 
   // --- Functions for Window Dragging ---
   const handleTitleBarMouseDown = (e, windowId) => {
     e.preventDefault();
     const windowElement = document.getElementById(windowId);
-    if (!windowElement) return;
+    if (!windowElement)  {
+      // DEBUG LOG: If windowElement not found, this is a serious issue
+      console.error(`[App] handleTitleBarMouseDown: Window element not found for ID: ${windowId}`);
+      return;
+    }
+    // DEBUG LOG 3: Confirm this handler is called for the correct window
+    console.log(`[App] Attempting to drag window: ${windowId}`);
 
     setDraggingWindow(windowId);
     setDragOffset({
@@ -62,7 +71,29 @@ function App() {
       window.removeEventListener('mouseup', handleMouseUp);
     };
   }, [handleMouseMove, handleMouseUp]);
+ 
+  // NEW: Handle icon drag end
+  const handleIconDragEnd = useCallback((id, newPosition) => {
+    setImageIconPositions(prevPositions => ({
+      ...prevPositions,
+      [id]: newPosition,
+    }));
+  }, []);
 
+  // --- NEW useEffect for initial image icon positions ---
+  // This effect runs ONLY ONCE when the component mounts.
+  useEffect(() => {
+    const newPositions = {};
+    portfolioData.randomDesktopImages.forEach(image => {
+      // If position is explicitly defined in JSON, use it. Otherwise, generate random.
+      // This ensures positions are generated ONLY ONCE on initial mount.
+      newPositions[image.id] = image.position || {
+        x: Math.random() * (window.innerWidth - 180) + 50, // Adjusted range to better fit desktop
+        y: Math.random() * (window.innerHeight - 300) + 100 // Adjusted range to better fit desktop
+      };
+    });
+    setImageIconPositions(newPositions);
+  }, []); // <-- CRITICAL: Empty dependency array ensures it runs only once.
 
   // --- Open Widgets Automatically on Load ---
   useEffect(() => {
@@ -93,28 +124,55 @@ function App() {
 
   // --- Existing App Logic ---
   const handleIconClick = (item) => {
-    if (!openWindows.some(win => win.id === item.id)) {
-      setWindowZIndex(prev => prev + 1);
-      const newWindow = {
-        id: item.id,
-        title: item.windowContent.title,
-        content: item.windowContent,
-        zIndex: windowZIndex + 1,
-        initialPosition: {
-          x: Math.random() * 200 + 100,
-          y: Math.random() * 100 + 80
-        },
-        // Desktop icons don't have initialSize, will use default CSS
-        initialSize: undefined
-      };
-      setOpenWindows(prev => [...prev, newWindow]);
+    // If it's an image file icon, create a new window for it
+    if (item.fullImagePath) { // Assuming item.fullImagePath indicates it's an image file
+      if (!openWindows.some(win => win.id === item.id)) {
+        setWindowZIndex(prev => prev + 1);
+        const newWindow = {
+          id: item.id,
+          title: item.name, // Use the image's name as window title
+          content: { type: 'image', src: item.fullImagePath }, // New content type 'image'
+          zIndex: windowZIndex + 1,
+          initialPosition: {
+            x: Math.random() * 200 + 100,
+            y: Math.random() * 100 + 80
+          },
+          initialSize: { width: 640, height: 360 } // Default size for image preview window
+        };
+        setOpenWindows(prev => [...prev, newWindow]);
+      } else {
+        // Bring existing image window to front
+        setOpenWindows(prev =>
+          prev.map(win =>
+            win.id === item.id ? { ...win, zIndex: windowZIndex + 1 } : win
+          ).sort((a, b) => a.zIndex - b.zIndex)
+        );
+        setWindowZIndex(prev => prev + 1);
+      }
     } else {
-      setOpenWindows(prev =>
-        prev.map(win =>
-          win.id === item.id ? { ...win, zIndex: windowZIndex + 1 } : win
-        ).sort((a, b) => a.zIndex - b.zIndex)
-      );
-      setWindowZIndex(prev => prev + 1);
+      if (!openWindows.some(win => win.id === item.id)) {
+        setWindowZIndex(prev => prev + 1);
+        const newWindow = {
+          id: item.id,
+          title: item.windowContent.title,
+          content: item.windowContent,
+          zIndex: windowZIndex + 1,
+          initialPosition: {
+            x: Math.random() * 200 + 100,
+            y: Math.random() * 100 + 80
+          },
+          // Desktop icons don't have initialSize, will use default CSS
+          initialSize: undefined
+        };
+        setOpenWindows(prev => [...prev, newWindow]);
+      } else {
+        setOpenWindows(prev =>
+          prev.map(win =>
+            win.id === item.id ? { ...win, zIndex: windowZIndex + 1 } : win
+          ).sort((a, b) => a.zIndex - b.zIndex)
+        );
+        setWindowZIndex(prev => prev + 1);
+      }
     }
   };
 
@@ -174,6 +232,18 @@ function App() {
       } else {
         return <p>Video content type not recognized or path/URL missing.</p>;
       }
+    } else if (windowData.content.type === 'image') { // NEW: Handle image content type
+        return (
+            <img
+                src={process.env.PUBLIC_URL + windowData.content.src}
+                alt={windowData.title}
+                style={{ maxWidth: '100%', maxHeight: '100%', objectFit: 'contain' }}
+            />
+        );
+    }
+    // NEW: Handle Photo Gallery content
+    else if (windowData.content.type === 'photoGallery') {
+      return <PhotoGallery images={windowData.content.images} />;
     }
     // Existing content rendering for desktop icons
     switch (windowData.content.type) {
@@ -210,7 +280,19 @@ function App() {
               <div key={work.id} className="work-example-item">
                 <h4>{work.title}</h4>
                 <p>{work.description}</p>
-                {work.image && <img src={process.env.PUBLIC_URL + work.image} alt={work.title} />}
+                {/* NEW: Container for side-by-side images */}
+                {work.image && Array.isArray(work.image) && (
+                  <div style={{ display: 'flex', flexWrap: 'wrap', gap: '10px', marginTop: '10px' }}>
+                    {work.image.map((imgSrc, i) => (
+                      <img
+                        key={i}
+                        src={process.env.PUBLIC_URL + imgSrc}
+                        alt={`${work.title} example ${i + 1}`}
+                        style={{ maxWidth: '48%', height: 'auto', flex: '1 1 auto', objectFit: 'contain' }} /* Adjust maxWidth for multiple images */
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -231,7 +313,6 @@ function App() {
     }
   };
 
-
   return (
     <div className="app-container">
       {/* Menu Bar */}
@@ -246,8 +327,8 @@ function App() {
           <MusicPlayerMenuItem
             musicData={{
               src: "/assets/nu-song.mp3", // Make sure this path is correct
-              artworkSrc: "/assets/nu-artwork.jpg", // Make sure this path is correct
-              title: "On Repeat 🔂",
+              artworkSrc: "/assets/nu-artwork.gif", // Make sure this path is correct
+              title: "Now Playing 🎧",
               autoPlay: true, // Will autoplay muted
               loop: true
             }}
@@ -267,6 +348,26 @@ function App() {
             position={icon.position}
           />
         ))}
+
+        {/* NEW: Random Desktop Images */}
+        {portfolioData.randomDesktopImages && portfolioData.randomDesktopImages.map(image => {
+          const isWindowForIconOpen = openWindows.some(win => win.id === image.id);
+          return (
+            <ImageFileIcon
+              key={image.id}
+              id={image.id}
+              name={image.name}
+              thumbnailPath={image.thumbnailPath}
+              fullImagePath={image.fullImagePath}
+              // For now, let's hardcode positions or add them to portfolio.json for specific placement
+              // Or you can generate random positions here dynamically
+              position={imageIconPositions[image.id]}
+              onClick={handleIconClick} // Pass the same handler as for desktop icons
+              onDragEnd={handleIconDragEnd} // NEW: Pass the drag end handler
+              isWindowOpen={isWindowForIconOpen} // NEW: Tell icon if its window is open
+            />
+          );
+        })}
 
         {openWindows.map(window => (
           <Window

@@ -101,6 +101,25 @@
         "type": "text",
         "content": "Hello! I'm Ara, a graphic designer with a passion for creating engaging and impactful visual experiences. My work spans branding, UI/UX, digital illustration, and 3D rendering. I love blending different media to bring unique visions to life. When I'm not designing, you can find me exploring new art forms, listening to music, or diving into a good book. I'm always eager to collaborate on exciting projects!"
       }
+    },
+    {
+      "id": "photo-gallery",
+      "name": "Bin",
+      "icon": "/assets/bin-icon.png",
+      "type": "app",
+      "position": { "x": 650, "y": 600 },
+      "windowContent": {
+        "title": "IRL",
+        "type": "photoGallery",
+        "images": [
+          "/assets/gallery/photo1.jpg",
+          "/assets/gallery/photo2.jpg",
+          "/assets/gallery/photo3.jpg",
+          "/assets/gallery/photo4.jpg",
+          "/assets/gallery/photo5.jpg"
+        ],
+        "initialSize": { "width": 700, "height": 500 }
+      }
     }
   ],
   "dockItems": [
@@ -108,8 +127,9 @@
       "id": "finder",
       "name": "Finder",
       "icon": "/assets/finder-icon.png",
-      "type": "app",
-      "action": "openFinder"
+      "type": "link",
+      "url": "https://drive.google.com/file/d/101hijgz7f8oGXYg8ZOrXGxVCsJhplILw/view?usp=drive_link",
+      "external": true
     },
     {
       "id": "instagram",
@@ -152,8 +172,8 @@
       "videoType": "online",
       "videoPath": "assets/videos/local-vid.mp4",
       "videoUrl": "https://www.youtube.com/embed/Pq10KCClZsc?si=_ChFK7xHeWOJN-qX",
-      "initialSize": { "width": 450, "height": 280 },
-      "initialPosition": { "x": 300, "y": 450 }
+      "initialSize": { "width": 540, "height": 340 },
+      "initialPosition": { "x": 300, "y": 50 }
     }
   ],
   "floatingGif": {
@@ -162,5 +182,28 @@
     "initialPosition": { "x": 1550, "y": 80 },
     "initialSize": { "width": 250, "height": 250 },
     "zIndex": 99
-  }
+  },
+  "randomDesktopImages": [
+    {
+      "id": "desktop-file-1",
+      "name": "please-dont-delete.png",
+      "position": { "x": 1000, "y": 500 },
+      "thumbnailPath": "/assets/screenshots/keep-thumb.png",
+      "fullImagePath": "/assets/screenshots/keep-full.png"  
+    },
+    {
+      "id": "desktop-file-2",
+      "name": "Random_Pic_01.png",
+      "position": { "x": 960, "y": 450 },
+      "thumbnailPath": "/assets/screenshots/random-thumb.png",
+      "fullImagePath": "/assets/screenshots/random-full.png"
+    },
+    {
+      "id": "desktop-file-3",
+      "name": "DELETE.png",
+      "position": { "x": 900, "y": 480 },
+      "thumbnailPath": "/assets/screenshots/delete-thumb.png",
+      "fullImagePath": "/assets/screenshots/delete-full.png"
+    }
+  ]
 }

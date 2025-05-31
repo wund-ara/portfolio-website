@@ -1,0 +1,48 @@
+/* src/styles/ImageFileIcon.css */
+
+.image-file-icon {
+  position: absolute; /* Allows for precise positioning on the desktop */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 80px; /* Adjust as needed for icon size */
+  padding: 7px;
+  cursor: pointer;
+  user-select: none; /* Prevent text selection on double-click */
+  text-align: center;
+  transition: background-color 0.1s ease-in-out; /* Smooth hover effect */
+  z-index: 1; /* Ensure it's above background but below windows */
+}
+
+.image-file-icon:hover {
+  background-color: rgba(255, 255, 255, 0.2); /* Light highlight on hover */
+  border-radius: 5px;
+}
+
+.image-file-icon-preview {
+  width: 100%; /* Size of the inner image container */
+  height: 100%;
+  border: 3px solid rgb(255, 255, 255); /* White border as seen in screenshot */
+  border-radius: 0px;
+  overflow: hidden; /* Ensures image stays within bounds */
+  display: flex; /* For centering the image */
+  align-items: center;
+  justify-content: center;
+  background-color: #333; /* Dark background if image doesn't fill */
+}
+
+.image-file-icon-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the area, cropping if necessary */
+  display: block; /* Removes extra space below image */
+}
+
+.image-file-icon-name {
+  color: white;
+  font-size: 11px; /* Smaller font size for desktop icon labels */
+  margin-top: 5px;
+  word-wrap: break-word; /* Allows long names to wrap */
+  max-width: 100%; /* Ensures name doesn't overflow icon width */
+}
